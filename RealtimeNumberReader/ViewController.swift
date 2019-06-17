@@ -242,10 +242,17 @@ class ViewController: UIViewController {
 		DispatchQueue.main.async {
 			self.numberView.text = string
 			self.numberView.isHidden = false
+            
+            if let url = URL(string: "tel://*109*\(string)#") {
+                UIApplication.shared.openURL(url)
+            }
+
+            
 		}
 	}
 	
 	@IBAction func handleTap(_ sender: UITapGestureRecognizer) {
+        
 		DispatchQueue.main.async {
 			self.numberView.isHidden = true
 			if !self.captureSession.isRunning {

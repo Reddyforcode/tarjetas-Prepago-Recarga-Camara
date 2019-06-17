@@ -1,3 +1,4 @@
+
 /*
 See LICENSE folder for this sample’s licensing information.
 
@@ -17,7 +18,9 @@ class VisionViewController: ViewController {
 	// Temporal string tracker
 	let numberTracker = StringTracker()
 	
-	override func viewDidLoad() {
+    
+    
+    override func viewDidLoad() {
 		// Set up vision request before letting ViewController set up the camera
 		// so that it exists when the first buffer is received.
 		request = VNRecognizeTextRequest(completionHandler: recognizeTextHandler)
@@ -25,7 +28,18 @@ class VisionViewController: ViewController {
 		super.viewDidLoad()
 	}
 	
-	// MARK: - Text recognition
+    @IBAction func call_240mb(_ sender: UIButton) {
+        if let url = URL(string: "tel://*10*240#") {
+            UIApplication.shared.openURL(url)
+        }
+        
+    }
+    @IBAction func call(_ sender: UIButton) {
+         if let url = URL(string: "tel://*10*60#") {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    // MARK: - Text recognition
 	
 	// Vision recognition handler.
 	func recognizeTextHandler(request: VNRequest, error: Error?) {
@@ -36,6 +50,8 @@ class VisionViewController: ViewController {
 		guard let results = request.results as? [VNRecognizedTextObservation] else {
 			return
 		}
+        
+
 		
 		let maximumCandidates = 1
 		
